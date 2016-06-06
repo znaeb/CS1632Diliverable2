@@ -1,0 +1,112 @@
+$ java CitySim9001 9
+Driver 0 heading from Outside City to College via Fifth Ave.
+Driver 0 heading from College to Library via Fifth Ave.
+Driver 0 heading from Library to Hotel via Bill St.
+Driver 0 heading from Hotel to Diner via Fourth Ave.
+Driver 0 heading from Diner to College via Phil St.
+Driver 0 heading from College to Diner via Phil St.
+Driver 0 heading from Diner to Outside City via Fourth Ave.
+Driver 0 has gone to Philadelphia!
+-----
+Driver 1 heading from Library to Hotel via Bill St.
+Driver 1 heading from Hotel to Diner via Fourth Ave.
+Driver 1 heading from Diner to College via Phil St.
+Driver 1 heading from College to Diner via Phil St.
+Driver 1 heading from Diner to Outside City via Fourth Ave.
+Driver 1 has gone to Philadelphia!
+-----
+Driver 2 heading from Diner to Outside City via Fourth Ave.
+Driver 2 has gone to Philadelphia!
+-----
+Driver 3 heading from Library to Hotel via Bill St.
+Driver 3 heading from Hotel to Diner via Fourth Ave.
+Driver 3 heading from Diner to College via Phil St.
+Driver 3 heading from College to Diner via Phil St.
+Driver 3 heading from Diner to College via Phil St.
+Driver 3 heading from College to Diner via Phil St.
+Driver 3 heading from Diner to Outside City via Fourth Ave.
+Driver 3 has gone to Philadelphia!
+-----
+Driver 4 heading from College to Library via Fifth Ave.
+Driver 4 heading from Library to Hotel via Bill St.
+Driver 4 heading from Hotel to Diner via Fourth Ave.
+Driver 4 heading from Diner to Outside City via Fourth Ave.
+Driver 4 has gone to Philadelphia!
+-----
+
+(713) $ java CitySim9001 10
+Driver 0 heading from College to Diner via Phil St.
+Driver 0 heading from Diner to College via Phil St.
+Driver 0 heading from College to Diner via Phil St.
+Driver 0 heading from Diner to Outside City via Fourth Ave.
+Driver 0 has gone to Philadelphia!
+-----
+Driver 1 heading from College to Diner via Phil St.
+Driver 1 heading from Diner to College via Phil St.
+Driver 1 heading from College to Diner via Phil St.
+Driver 1 heading from Diner to College via Phil St.
+Driver 1 heading from College to Library via Fifth Ave.
+Driver 1 heading from Library to Hotel via Bill St.
+Driver 1 heading from Hotel to Library via Bill St.
+Driver 1 heading from Library to Outside City via Fifth Ave.
+Driver 1 has gone to Cleveland!
+-----
+Driver 2 heading from College to Diner via Phil St.
+Driver 2 heading from Diner to College via Phil St.
+Driver 2 heading from College to Diner via Phil St.
+Driver 2 heading from Diner to Outside City via Fourth Ave.
+Driver 2 has gone to Philadelphia!
+-----
+Driver 3 heading from College to Library via Fifth Ave.
+Driver 3 heading from Library to Hotel via Bill St.
+Driver 3 heading from Hotel to Diner via Fourth Ave.
+Driver 3 heading from Diner to Outside City via Fourth Ave.
+Driver 3 has gone to Philadelphia!
+-----
+Driver 4 heading from Diner to Outside City via Fourth Ave.
+Driver 4 has gone to Philadelphia!
+-----
+
+
+(725) $ java CitySim9000 111
+Driver 0 heading from College to Library via Fifth Ave.
+Driver 0 heading from Library to Outside City via Fifth Ave.
+Driver 0 has gone to Cleveland!
+-----
+Driver 1 heading from Hotel to Library via Bill St.
+Driver 1 heading from Library to Hotel via Bill St.
+Driver 1 heading from Hotel to Diner via Fourth Ave.
+Driver 1 heading from Diner to Outside City via Fourth Ave.
+Driver 1 has gone to Philadelphia!
+-----
+Driver 2 heading from Hotel to Library via Bill St.
+Driver 2 heading from Library to Hotel via Bill St.
+Driver 2 heading from Hotel to Diner via Fourth Ave.
+Driver 2 heading from Diner to College via Phil St.
+Driver 2 heading from College to Diner via Phil St.
+Driver 2 heading from Diner to College via Phil St.
+Driver 2 heading from College to Diner via Phil St.
+Driver 2 heading from Diner to College via Phil St.
+Driver 2 heading from College to Diner via Phil St.
+Driver 2 heading from Diner to College via Phil St.
+Driver 2 heading from College to Library via Fifth Ave.
+Driver 2 heading from Library to Hotel via Bill St.
+Driver 2 heading from Hotel to Library via Bill St.
+Driver 2 heading from Library to Hotel via Bill St.
+Driver 2 heading from Hotel to Library via Bill St.
+Driver 2 heading from Library to Hotel via Bill St.
+Driver 2 heading from Hotel to Library via Bill St.
+Driver 2 heading from Library to Hotel via Bill St.
+Driver 2 heading from Hotel to Library via Bill St.
+Driver 2 heading from Library to Outside City via Fifth Ave.
+Driver 2 has gone to Cleveland!
+-----
+Driver 3 heading from Diner to College via Phil St.
+Driver 3 heading from College to Library via Fifth Ave.
+Driver 3 heading from Library to Outside City via Fifth Ave.
+Driver 3 has gone to Cleveland!
+-----
+Driver 4 heading from College to Library via Fifth Ave.
+Driver 4 heading from Library to Outside City via Fifth Ave.
+Driver 4 has gone to Cleveland!
+-----
