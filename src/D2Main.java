@@ -1,20 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+import java.util.Random;
 /**
  *
  * @author Benjamin
  */
 public class D2Main {
-
-    /**
-     * @param args the command line arguments
-     */
+    static int seed;
+    static int locationCount=Location.getMaxLocs();
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        seed=Integer.parseInt(args[0]);
+        City myCity;
     }
     
+    //makes
+    public static Driver getDriver(){
+        Random rand=new Random();
+        rand.setSeed(seed);
+        return new Driver(rand.nextInt(locationCount));
+        
+    }
 }
