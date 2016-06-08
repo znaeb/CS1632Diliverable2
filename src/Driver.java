@@ -1,4 +1,3 @@
-import java.util.Random;
 public class Driver {
     private int currentIndex;
     private City myCity;
