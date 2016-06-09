@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.Mockito.*;
 
 /**
  *
@@ -42,6 +44,7 @@ public class DriverTest {
     @Test
     public void testGetCurrentLocation() {
         System.out.println("getCurrentLocation");
+        
         Driver instance = null;
         String expResult = "";
         String result = instance.getCurrentLocation();
