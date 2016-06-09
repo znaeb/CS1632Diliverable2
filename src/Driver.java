@@ -15,7 +15,7 @@ public class Driver {
     }
     
     public Boolean moveTo(int index){
-        int[]dests=myCity.getCurrent(currentIndex).getDestArray();
+        int[]dests=myCity.getLoc(currentIndex).getDestArray();
         if(dests[index]>=0&&dests[index]<Location.getMaxLocs()){
             currentIndex=index;
             return true;
@@ -23,7 +23,7 @@ public class Driver {
         return false;
     }
     public Boolean moveTo(String destination){
-        int[]dests=myCity.getCurrent(currentIndex).getDestArray();
+        int[]dests=myCity.getLoc(currentIndex).getDestArray();
         for (int i=0;i<Location.getMaxLocs();i++){
             if (destination.equalsIgnoreCase(myCity.getLoc(i).getName())){
                 return moveTo(i);

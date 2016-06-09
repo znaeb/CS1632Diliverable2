@@ -5,9 +5,6 @@ public class City {
         myCity=Location.getCity();
     }
     
-    public Location getCurrent(int currentIndex){
-        return myCity[currentIndex];
-    }
     public Location getLoc(int index){
         return myCity[index];
     }

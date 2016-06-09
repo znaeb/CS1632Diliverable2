@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
 
 /**
  *
@@ -34,21 +36,6 @@ public class CityTest {
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of getCurrent method, of class City.
-     */
-    @Test
-    public void testGetCurrent() {
-        System.out.println("getCurrent");
-        int currentIndex = 0;
-        City instance = new City();
-        Location expResult = null;
-        Location result = instance.getCurrent(currentIndex);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
