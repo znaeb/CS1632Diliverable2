@@ -10,7 +10,8 @@
  */
 public class Location {
     private static int maxLocs=5;
-    static Location locArray[];
+    private static int streetCount=4;
+    //static Location locArray[];
 
     /**
      * @return the maxLocs
@@ -26,11 +27,11 @@ public class Location {
     //returns -1 for no path
     public Location(String nam,int fourth,int fifth,int bill, int phil){
         name=nam;
-        destinations=new int[maxLocs];
+        destinations=new int[streetCount];
         destinations[0]=fourth;
-        destinations[2]=fifth;
-        destinations[3]=bill;
-        destinations[4]=phil;
+        destinations[1]=fifth;
+        destinations[2]=bill;
+        destinations[3]=phil;
     }
     public static Location[] getCity(){
         Location[] myCity=new Location[getMaxLocs()];

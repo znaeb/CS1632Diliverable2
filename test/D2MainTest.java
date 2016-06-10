@@ -42,10 +42,11 @@ public class D2MainTest {
     @Test
     public void testMain() {
         System.out.println("main");
-        String[] args = null;
+        String[] args = {"23456789"};
         D2Main.main(args);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //need to check for null pointers here
+        //fail("The test case is a prototype.");
     }
 
     /**

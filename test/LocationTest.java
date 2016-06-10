@@ -51,16 +51,22 @@ public class LocationTest {
     }
 
     /**
-     * Test of getCity method, of class Location.
+     * Test of getCity method for the default city, of class Location.
      */
     @Test
     public void testGetCity() {
         System.out.println("getCity");
-        Location[] expResult = null;
+        Location[] expResult = new Location[5];
+        expResult[0]=new Location("Hotel",1,-1,2, -1);
+        expResult[1]=new Location("Diner",4,-1,-1, 3);
+        expResult[2]=new Location("Library",-1,4,0, -1);
+        expResult[3]=new Location("College",-1,2,-1, 1);
+        expResult[4]=new Location("Outside City",0,3,-1, -1);
         Location[] result = Location.getCity();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        for (int i=0;i<5;i++){
+            assertEquals(expResult[i].getName(), result[i].getName());
+        }
+        //assertArrayEquals(expResult, result);
     }
 
     /**
@@ -68,13 +74,12 @@ public class LocationTest {
      */
     @Test
     public void testGetName() {
+        
         System.out.println("getName");
-        Location instance = null;
-        String expResult = "";
+        Location instance = new Location("Hotel",0,3,-1, -1);;
+        String expResult = "Hotel";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -83,12 +88,40 @@ public class LocationTest {
     @Test
     public void testGetDestArray() {
         System.out.println("getDestArray");
-        Location instance = null;
-        int[] expResult = null;
+        Location instance = new Location("Hotel",0,3,-1, -1);
+        int[] expResult =  new int[] {0,3,-1, -1};
         int[] result = instance.getDestArray();
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    /**
+     * Test of getDestArray method, of class Location, using a filled city
+     */
+    @Test
+    public void testGetDestArray_usingGetCity() {
+        System.out.println("getDestArray");
+        Location[] city=Location.getCity();
+        Location instance = city[0];
+        int[] expResult = {1,-1,2, -1};
+        int[] result = instance.getDestArray();
+        
+        //dependant tests
+        assertArrayEquals(expResult, result);
+        instance = city[1];
+        expResult = new int[] {4 , -1 , -1 , 3};
+        result = instance.getDestArray();
+        assertArrayEquals(expResult, result);
+        instance = city[2];
+        expResult = new int[] {-1,4,0, -1};
+        result = instance.getDestArray();
+        assertArrayEquals(expResult, result);
+        instance = city[3];
+        expResult = new int[] {-1,2,-1, 1};
+        result = instance.getDestArray();
+        assertArrayEquals(expResult, result);
+        instance = city[4];
+        expResult = new int[] {0,3,-1, -1};
+        result = instance.getDestArray();
+        assertArrayEquals(expResult, result);
     }
     
 }

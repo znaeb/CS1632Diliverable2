@@ -59,12 +59,10 @@ public class DriverTest {
     @Test
     public void testGetCurrentIndex() {
         System.out.println("getCurrentIndex");
-        Driver instance = null;
+        Driver instance = new Driver(0);
         int expResult = 0;
         int result = instance.getCurrentIndex();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -73,13 +71,13 @@ public class DriverTest {
     @Test
     public void testMoveTo_int() {
         System.out.println("moveTo");
-        int index = 0;
-        Driver instance = null;
-        Boolean expResult = null;
+        int index = 2;
+        Driver instance = new Driver(0);
+        Boolean expResult = true;
         Boolean result = instance.moveTo(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(instance.getCurrentIndex(),2);
+
     }
 
     /**
@@ -88,11 +86,12 @@ public class DriverTest {
     @Test
     public void testMoveTo_String() {
         System.out.println("moveTo");
-        String destination = "";
-        Driver instance = null;
-        Boolean expResult = null;
+        String destination = "College";
+        Driver instance = new Driver(0);
+        Boolean expResult = true;
         Boolean result = instance.moveTo(destination);
         assertEquals(expResult, result);
+        assertEquals(instance.getCurrentIndex(),destination);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
