@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>Mockito in six easy examples</title>
+  <meta name="description" content="Mockito is a fantastic mock library for Java. I’m fascinated by how easy it is to use, compared to other things out there both in the Java and .NET world. He...">
+
+  <link rel="stylesheet" href="/css/main2.css">
+  <link rel="canonical" href="https://gojko.net/2009/10/23/mockito-in-six-easy-examples/">
+  <link rel="alternate" type="application/rss+xml" title="Gojko Adzic" href="https://gojko.net/feed.xml" />
+</head>
+
+
+  <body>
+	<div class="site">
+		<div class="site-header">
+			<div class="wrapper"><label class="menu-icon" for="mobileMenu"></label>
+<a class="mobile site-title" href="/">Gojko Adzic</a>
+<div class="author">
+	<a class="site-title" href="/"></a>
+	<ul class="contact">
+		<li>Gojko Adzic helps ambitious teams align software delivery with business goals. His books include Impact Mapping and Specification by Example, winner of the 2012 Jolt Award. <a href="/about">More about Gojko ...</a> 
+			<li><a class="svg-icon email" target="_blank" href="mailto:gojko@neuri.co.uk">gojko@neuri.co.uk</a> 
+				<li><a class="svg-icon twitter" target="_blank" href="https://twitter.com/gojkoadzic">@gojkoadzic</a></li>
+				<li><a class="svg-icon github" target="_blank" href="https://github.com/gojko">gojko</a></li>
+	</ul>
+</div>
+<input class="menu-icon" type="checkbox" id="mobileMenu">
+<ul class="site-menu">
+	<li><a href="/upcoming-events.html">Training/Workshops</a></li>
+	<li><a href="//books.gojko.net">Books</a></li>
+	<li><a href="/posts.html">Articles</a></li>
+	<li><a href="/lists/presentations.html">Videos</a></li>
+	<li><a href="/projects.html">Software</a></li>
+	<li class="mobile"><a href="/about">About Gojko...</a> 
+</ul>
+</div>
+		</div>
+	    <div class="site-content">
+			<div class="wrapper"><div class="page">
+  <div class="page-content">
+	<h1 class="page-header">Mockito in six easy examples</h1>  
+	<p class="post-meta"><time datetime="2009-10-23T00:00:00+02:00" itemprop="datePublished">Oct 23, 2009</time></p>
+<div class="post-content">
+<p>Mockito is a fantastic mock library for Java. I’m fascinated by how easy it is to use, compared to other things out there both in the Java and .NET world. Here is everything you need to know to get started in six really easy examples.<!--more--></p>
+
+<p>First of all, get mockito from <a href="http://mockito.org">http://mockito.org/</a>. Almost everything really interesting can be imported with the org.mockito.Mockito class (or a static import of its methods, which I’ll use in this post). So let’s get right into it.</p>
+
+<p>To create a stub (or a mock), use mock(class). Then use when(mock).thenReturn(value) to specify the stub value for a method. If you specify more than one value, they will be returned in sequence until the last one is used, after which point the last specified value gets returned. (So to have a method return the same value always, just specify it once). For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
+import java.util.Iterator;
+import org.junit.Test;
+....
+ @Test
+ public void iterator_will_return_hello_world(){
+  //arrange
+  Iterator i=mock(Iterator.class);
+  when(i.next()).thenReturn("Hello").thenReturn("World");
+  //act
+  String result=i.next()+" "+i.next();
+  //assert
+  assertEquals("Hello World", result);
+ }
+</code></pre>
+</div>
+
+<p>This example creates a mock iterator and makes it return “Hello” the first time method next() is called. Calls after that return “World”. Then we can run normal assertions.</p>
+
+<p>Stubs can also return different values depending on arguments passed into the method. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Test
+public void with_arguments(){
+ Comparable c=mock(Comparable.class);
+ when(c.compareTo("Test")).thenReturn(1);
+ assertEquals(1,c.compareTo("Test"));
+}
+</code></pre>
+</div>
+
+<p>This creates a stub Comparable object and returns 1 if it is compared to a particular String value (“Test” in this case). If the method has arguments but you really don’t care what gets passed or cannot predict it, use anyInt() (and alternative values for other types). For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Test
+public void with_unspecified_arguments(){
+ Comparable c=mock(Comparable.class);
+ when(c.compareTo(anyInt())).thenReturn(-1);
+ assertEquals(-1,c.compareTo(5));
+}
+</code></pre>
+</div>
+
+<p>This stub comparable returns -1 regardless of the actual method argument. With void methods, this gets a bit tricky as you can’t use them in the when() call. The alternative syntax is doReturn(result).when(mock_object).void_method_call(); Instead of returning, you can also use .thenThrow() or doThrow() for void methods. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Test(expected=IOException.class)
+public void OutputStreamWriter_rethrows_an_exception_from_OutputStream() 
+ throws IOException{
+ OutputStream mock=mock(OutputStream.class);
+ OutputStreamWriter osw=new OutputStreamWriter(mock);
+ doThrow(new IOException()).when(mock).close();
+ osw.close();
+}
+</code></pre>
+</div>
+
+<p>This example throws an IOException when the mock OutputStream close method is called. We verify easily that the OutputStreamWriter rethrows the exception of the wrapped output stream. To verify actual calls to underlying objects (typical mock object usage), we can use verify(mock_object).method_call; For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Test
+public void OutputStreamWriter_Closes_OutputStream_on_Close()
+  throws IOException{
+ OutputStream mock=mock(OutputStream.class);
+ OutputStreamWriter osw=new OutputStreamWriter(mock);
+ osw.close();
+ verify(mock).close();
+}
+</code></pre>
+</div>
+
+<p>This example will verify that OutputStreamWriter propagates the close method call to the wrapped output stream. You can use arguments on methods and matchers such as anyInt() similar to the previous example. Note that you can’t mix literals and matchers, so if you have multiple arguments they all have to be either literals or matchers. use eq(value) matcher to convert a literal into a matcher that compares on value. Mockito comes with lots of matchers already built in, but sometimes you need a bit more flexibility. For example, OutputStreamWriter will buffer output and then send it to the wrapped object when flushed, but we don’t know how big the buffer is upfront. So we can’t use equality matching. However, we can supply our own matcher:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Test
+public void OutputStreamWriter_Buffers_And_Forwards_To_OutputStream() 
+ throws IOException{  
+ OutputStream mock=mock(OutputStream.class);
+ OutputStreamWriter osw=new OutputStreamWriter(mock);
+ osw.write('a');
+ osw.flush();
+ // can't do this as we don't know how long the array is going to be
+ // verify(mock).write(new byte[]{'a'},0,1);
+
+ BaseMatcher&lt;byte []&gt; arrayStartingWithA=new BaseMatcher&lt;/byte&gt;&lt;byte []&gt;(){
+  @Override
+  public void describeTo(Description description) {
+   // nothing
+  }
+  // check that first character is A
+  @Override
+  public boolean matches(Object item) {
+   byte[] actual=(byte[]) item;
+   return actual[0]=='a';
+  }
+ };
+ // check that first character of the array is A, 
+ // and that the other two arguments are 0 and 1
+ verify(mock).write(argThat(arrayStartingWithA), eq(0),eq(1)); 
+}
+</code></pre>
+</div>
+
+<p>That’s it - all you need to know to get started. Now go forth and refactor all that easymock ugliness from your projects.</p>
+
+</div>
+
+<div class="post-footer">
+	Get the next post in your inbox: 
+	<a class="svg-icon email" title="email" href="http://gojko.us2.list-manage1.com/subscribe?u=abe09ce689751513abf6f095f&id=8b296100b1" role="mailchimp"><span class="wide-only">Email</span></a>
+	<a class="svg-icon rss" href="/feed.xml" title="rss"><span class="wide-only">RSS</span></a>
+	<a class="svg-icon twitter" href="https://twitter.com/intent/user?screen_name=gojkoadzic" title="twitter"><span class="wide-only">Twitter</span></a>
+</div>
+
+  </div>
+  <div class="page-menu">
+	<div>
+
+	<h3>Don't miss the next update</h3>
+	<p>Get book and conference discounts and 
+	new article updates monthly. Low volume, high value news: </p>
+	<p class="subscribe">
+	<a class="svg-icon email" href="http://gojko.us2.list-manage1.com/subscribe?u=abe09ce689751513abf6f095f&id=8b296100b1" role="mailchimp">Email</a>
+	<a class="svg-icon rss" href="/feed.xml">RSS</a>
+	</p>
+
+	<h3>Upcoming Events</h3>
+
+<h4>Specification by Example</h4>
+<ul>
+<li><a href="http://techtalk.at/trainings/specification-by-example/">Vienna, AT, 20-21 June</a></li>
+<li><a href="https://www.wannaflex.nl/trainingen/specification-by-example-from-user-stories-to-acceptance-tests/?utm_source=https://gojko.net/&utm_medium=tekstlink&utm_campaign=workshop&utm_content=specbyexample">Amsterdam, NL, 14-15 September</a></li>
+<li><a href="http://agilecambridge.net/2016/workshops/">Cambridge, UK, 27 September</a></li>
+<li><a href="http://techtalk.at/trainings/specification-by-example/">Vienna, AT, 13-14 October</a></li>
+<li><a href="https://www.crisp.se/kurser/specification-by-example-october-19-20-2016">Stockholm, SE, October 19-20</a></li>
+<li><a href="http://www.devtraining.eu/event/specification-by-example-2016-11-10-2016-11-11-13/register">Riga, LV, November 10-11</a></li>
+<li><a href="http://se-co.de/index.php/14-15-november-2016-in-cologne-specification-by-example-from-user-stories-to-acceptance-tests/">Cologne, DE, November 14-15</a></li>
+<li><a href="http://techtalk.at/trainings/specification-by-example-in-zurich/">Zurich, CH, November 21-22</a></li>
+</ul>
+<h4>Product Owner Key Skills: Impact mapping, story mapping and valuable user stories</h4>
+<ul>
+<li><a href="http://ndcsydney.com/workshop/how-to-get-more-value-out-of-user-stories/">Sydney, AU, 1-2 August</a></li>
+<li><a href="http://2016.agilesingapore.org/workshop-user-stories-gojko.html">Singapore, 5 October</a></li>
+<li><a href="http://programutvikling.no/en/course/product-owner-key-skills/">Oslo, NO, 24-25 October</a></li>
+<li><a href="http://techtalk.at/trainings/product-owner-key-skills/">Zurich, CH, November 23-24</a></li>
+</ul>
+<h4>Impact Mapping</h4>
+<ul>
+<li><a href="http://www.techtalk.at/TechTalk/Events/Impact-Mapping,-22-June-2016?lang=de-AT">Vienna, AT, 22 June</a></li>
+<li><a href="https://www.crisp.se/kurser/impact-mapping-october-21-2016">Stockholm, SE, October 21</a></li>
+</ul>
+
+	
+</div>
+
+  </div>
+</div>
+</div>
+		</div>
+		<div class="site-footer">
+			<div class="wrapper"> Copyright &copy; Gojko Adzic 2006-2015
+
+</div>
+		</div>
+	</div>
+	<div id="mc_embed_signup">
+
+	<form action="//gojko.us2.list-manage.com/subscribe/post?u=abe09ce689751513abf6f095f&amp;id=8b296100b1" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+		<h2>Sign up for Impact</h2>
+		<p>Gojko Adzic's monthly mailing list with conference and book discount offers and new articles</p>
+		<div class="mc-field-group">
+			<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+			</label>
+			<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+		</div>
+		<div class="mc-field-group">
+			<label for="mce-FNAME">First Name </label>
+			<input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+		</div>
+		<div class="mc-field-group">
+			<label for="mce-LNAME">Last Name </label>
+			<input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+		</div>
+		<div id="mce-responses" class="clear">
+			<div class="response" id="mce-error-response" style="display:none"></div>
+			<div class="response" id="mce-success-response" style="display:none"></div>
+		</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+		<div style="position: absolute; left: -5000px;"><input type="text" name="b_abe09ce689751513abf6f095f_8b296100b1" tabindex="-1" value=""></div>
+		<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+		<span class="indicates-required"><span class="asterisk">*</span> indicates required</span>
+		</div>
+	</form>
+</div>
+
+	<script>
+(function (role, className) {
+	var links=document.querySelectorAll('[role=' + role + ']'),
+		index;
+	if (!document.body.classList) {
+		return;
+	}
+	for (index = 0; index < links.length; index++) {
+		links[index].addEventListener('click', function (e) {
+			document.body.classList.add(className);
+			e.preventDefault();
+			document.querySelector('#mc_embed_signup input:first-of-type').focus();
+			window.ga('send','event','signup-open'); 
+			return false;
+		});
+	};
+	document.querySelector('#mc_embed_signup form').addEventListener('submit', function () {
+		window.ga('send','event','signup-submit'); 
+		document.body.classList.remove(className);
+	});
+	
+})('mailchimp','signup-visible');
+
+
+(function () {
+	var links = document.getElementsByTagName('a'),
+		index, link,
+		pushEvent = function () {
+			var link = this; 
+			try { 
+				window.ga('send','event','Link Click', link.href); 
+			} catch(err){}
+		};
+	for (index = 0; index < links.length; index++) {
+		link = links[index];
+		if (!link.getAttribute('role') && (link.getAttribute('href').indexOf('http://') === 0 || link.getAttribute('href').indexOf('https://') === 0)) {
+			link.setAttribute('target', '_blank');
+			link.addEventListener('click', pushEvent);
+		}
+	}
+
+})();
+</script>
+
+<script>
+	window.ga = window.ga || function () {
+		(window.ga.q = window.ga.q || []).push(arguments);
+	};
+	window.ga.l = +new Date();
+	window.ga('create', 'UA-288090-2', 'auto');
+	window.ga('send', 'pageview');
+  
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</body>	
+
+</html>
