@@ -15,21 +15,28 @@ public class Driver {
         return currentIndex;
     }
     
-    public Boolean moveTo(int index){
+    //moves to a city with index 'index' and returns index of street used,
+    //returns -1 if no move is made
+    public int moveTo(int index){
         int[]dests=myCity.getLoc(currentIndex).getDestArray();
-        if(dests[index]>=0&&dests[index]<Location.getMaxLocs()){
-            currentIndex=index;
-            return true;
+        for (int i=0;i<dests.length;i++){
+            if(dests[i]==index){
+                currentIndex=index;
+                return i;
+            }
         }
-        return false;
+        return -1;
     }
-    public Boolean moveTo(String destination){
+    
+    //moves to a city with index 'index' and returns index of street used,
+    //returns -1 if no move is made
+    public int moveTo(String destination){
         //int[]dests=myCity.getLoc(currentIndex).getDestArray();
         for (int i=0;i<Location.getMaxLocs();i++){
             if (destination.equalsIgnoreCase(myCity.getLoc(i).getName())){
                 return moveTo(i);
             }
         }
-        return false;
+        return -1;
     }
 }

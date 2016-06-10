@@ -71,8 +71,8 @@ public class DriverTest {
         System.out.println("moveTo");
         int index = 2;
         Driver instance = new Driver(0);
-        Boolean expResult = true;
-        Boolean result = instance.moveTo(index);
+        int expResult = 2;
+        int result = instance.moveTo(index);
         assertEquals(expResult, result);
         assertEquals(instance.getCurrentIndex(),2);
 
@@ -86,11 +86,11 @@ public class DriverTest {
         System.out.println("moveTo");
         String destination = "College";
         Driver instance = new Driver(0);
-        Boolean expResult = false;
-        Boolean result = instance.moveTo(destination);
+        int expResult = -1;
+        int result = instance.moveTo(destination);
         assertEquals(expResult, result);
-        destination = "Library";
-        expResult = true;
+        destination = "Diner";
+        expResult = 0;
         result = instance.moveTo(destination);
         assertEquals(expResult, result);
         assertEquals(instance.getCurrentLocation(),destination);
