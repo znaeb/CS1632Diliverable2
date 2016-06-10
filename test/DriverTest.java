@@ -45,12 +45,10 @@ public class DriverTest {
     public void testGetCurrentLocation() {
         System.out.println("getCurrentLocation");
         
-        Driver instance = null;
-        String expResult = "";
+        Driver instance = new Driver(0);
+        String expResult = "Hotel";
         String result = instance.getCurrentLocation();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -88,12 +86,14 @@ public class DriverTest {
         System.out.println("moveTo");
         String destination = "College";
         Driver instance = new Driver(0);
-        Boolean expResult = true;
+        Boolean expResult = false;
         Boolean result = instance.moveTo(destination);
         assertEquals(expResult, result);
-        assertEquals(instance.getCurrentIndex(),destination);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        destination = "Library";
+        expResult = true;
+        result = instance.moveTo(destination);
+        assertEquals(expResult, result);
+        assertEquals(instance.getCurrentLocation(),destination);
     }
     
 }

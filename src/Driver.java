@@ -4,6 +4,7 @@ public class Driver {
 
     public Driver(int startIndex){
         currentIndex=startIndex;
+        myCity=new City();
     }
     
     
@@ -23,7 +24,7 @@ public class Driver {
         return false;
     }
     public Boolean moveTo(String destination){
-        int[]dests=myCity.getLoc(currentIndex).getDestArray();
+        //int[]dests=myCity.getLoc(currentIndex).getDestArray();
         for (int i=0;i<Location.getMaxLocs();i++){
             if (destination.equalsIgnoreCase(myCity.getLoc(i).getName())){
                 return moveTo(i);

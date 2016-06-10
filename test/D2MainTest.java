@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -49,9 +50,10 @@ public class D2MainTest {
         //fail("The test case is a prototype.");
     }
 
-    /**
+    
+    /**not really testable...
      * Test of getDriver method, of class D2Main.
-     */
+     *
     @Test
     public void testGetDriver() {
         System.out.println("getDriver");
@@ -61,5 +63,5 @@ public class D2MainTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+    */
 }

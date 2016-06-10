@@ -53,8 +53,6 @@ public class CityTest {
         Location result = instance.getLoc(index);
         assertEquals(expResult.getName(), result.getName());
         assertArrayEquals(expResult.getDestArray(),result.getDestArray());
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,13 +61,15 @@ public class CityTest {
     @Test
     public void testGetLoc_String() {
         System.out.println("getLoc");
-        String location = "";
+        String location = "Hotel";
         City instance = new City();
-        Location expResult = null;
+        Location expResult =mock(Location.class);
+        when(expResult.getName()).thenReturn("Hotel");
+        int[] arrayEx={1,-1,2, -1};
+        when(expResult.getDestArray()).thenReturn(arrayEx);
         Location result = instance.getLoc(location);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult.getName(), result.getName());
+        assertArrayEquals(expResult.getDestArray(),result.getDestArray());
     }
     
 }
