@@ -51,7 +51,7 @@ public class D2MainTest {
     }
 
     
-    /**not really testable...
+    /**not really testable...(if it is, I'm not sure how)
      * Test of getDriver method, of class D2Main.
      *
     @Test

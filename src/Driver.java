@@ -7,10 +7,12 @@ public class Driver {
         myCity=new City();
     }
     
-    
+    //returns a string with the drivers currnet location's name, useful for printing the output
     public String getCurrentLocation(){
         return myCity.getLoc(currentIndex).getName();
     }
+    
+    //returns an int with the drivers currnet location's index, useful for getting data
     public int getCurrentIndex(){
         return currentIndex;
     }
