@@ -64,7 +64,7 @@ public class LocationTest {
         expResult[4]=new Location("Outside City",0,3,-1, -1);
         Location[] result = Location.getCity();
         for (int i=0;i<5;i++){
-            assertEquals(expResult[i].getName(), result[i].getName());
+            assert(expResult[i].equals(result[i]));
         }
         //assertArrayEquals(expResult, result);
     }
