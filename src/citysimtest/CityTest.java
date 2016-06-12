@@ -37,7 +37,7 @@ public class CityTest {
 
         when(expResult.getName()).thenReturn("Hotel");
 
-        int[] arrayEx= { 1 , -1, 2, -1 };
+        int[] arrayEx= { 1, -1, 2, -1 };
 
         when(expResult.getDestinations()).thenReturn(arrayEx);
 
@@ -53,7 +53,7 @@ public class CityTest {
     @Test
     public void getLocationTestString() {
         String location = "Hotel";
-        City instance = new City();
+        City city = new City();
         Location expResult = mock(Location.class);
 
         when(expResult.getName()).thenReturn("Hotel");
@@ -62,7 +62,7 @@ public class CityTest {
 
         when(expResult.getDestinations()).thenReturn(arrayEx);
 
-        Location result = instance.getLocation(location);
+        Location result = city.getLocation(location);
 
         assertEquals(expResult.getName(), result.getName());
         assertArrayEquals(expResult.getDestinations(), result.getDestinations());

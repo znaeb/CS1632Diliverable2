@@ -4,8 +4,8 @@
 public class Location {
     private String name;
     private int[] destinations;
-    public static int MAX_LOCATIONS = 5;
-    public static int STREET_COUNT = 4;
+    public static int NUM_LOCATIONS = 5;
+    public static int NUM_STREETS = 4;
 
     /**
      * Creates a location.
@@ -22,7 +22,7 @@ public class Location {
      */
     public Location(String n, int fourth, int fifth, int bill, int phil) {
         name = n;
-        destinations = new int[STREET_COUNT];
+        destinations = new int[NUM_STREETS];
         destinations[0] = fourth;
         destinations[1] = fifth;
         destinations[2] = bill;
@@ -31,10 +31,10 @@ public class Location {
 
     /**
      * Gets the city
-     * @return
+     * @return locations in the city
      */
     public static Location[] getCity() {
-        Location[] city = new Location[MAX_LOCATIONS];
+        Location[] city = new Location[NUM_LOCATIONS];
 
         city[0] = new Location("Hotel", 1, -1, 2, -1);
         city[1] = new Location("Diner", 4, -1, -1, 3);

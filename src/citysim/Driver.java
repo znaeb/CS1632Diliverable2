@@ -7,7 +7,7 @@ public class Driver {
 
     /**
      * Default constructor
-     * @param index
+     * @param index starting index
      */
     public Driver(int index) {
         currentIndex = index;
@@ -31,7 +31,7 @@ public class Driver {
     }
     
     /**
-     * Moves to a city with specified index
+     * Moves to a location with specified index
      * @param index an int
      * @return index of street used, -1 if no move is made
      */
@@ -54,7 +54,7 @@ public class Driver {
      * @return index of street used, -1 if no move is made
      */
     public int moveTo(String destination) {
-        for (int i = 0; i < Location.MAX_LOCATIONS; i++) {
+        for (int i = 0; i < Location.NUM_LOCATIONS; i++) {
             if (destination.equalsIgnoreCase(city.getLocation(i).getName())) {
                 return moveTo(i);
             }
