@@ -25,7 +25,13 @@ public class Driver {
      * @return a string with the driver's current locations
      */
     public String getLocation() {
-        return city.getLocation(currentIndex).getName();
+        String result = null;
+
+        if (currentIndex >= 0 && currentIndex <= Location.NUM_LOCATIONS) {
+            result = city.getLocation(currentIndex).getName();
+        }
+
+        return result;
     }
     
     /**

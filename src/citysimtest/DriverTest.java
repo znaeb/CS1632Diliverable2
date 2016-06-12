@@ -40,10 +40,17 @@ public class DriverTest {
     public void getLocationTest() {
         Driver driver = new Driver(0);
 
-        String expResult = "Hotel";
-        String result = driver.getLocation();
+        assertEquals(driver.getLocation(), "Hotel");
+    }
 
-        assertEquals(expResult, result);
+    /**
+     * Tests getLocationIndex returns null when the driver has an invalid location index
+     */
+    @Test
+    public void getLocationTestInvalidStartIndex() {
+        Driver driver = new Driver(-1);
+
+        assertNull(driver.getLocation());
     }
 
     /**
@@ -53,10 +60,7 @@ public class DriverTest {
     public void getLocationIndexTest() {
         Driver driver = new Driver(0);
 
-        int expResult = 0;
-        int result = driver.getLocationIndex();
-
-        assertEquals(expResult, result);
+        assertEquals(driver.getLocationIndex(), 0);
     }
 
     /**
@@ -64,14 +68,11 @@ public class DriverTest {
      */
     @Test
     public void moveToTestInt() {
-        int index = 2;
         Driver driver = new Driver(0);
+        int index = 2;
 
-        int expResult = 2;
-        int result = driver.moveTo(index);
-
-        assertEquals(expResult, result);
-        assertEquals(driver.getLocationIndex(),2);
+        assertEquals(driver.moveTo(index), 2);
+        assertEquals(driver.getLocationIndex(), 2);
 
     }
 
@@ -80,20 +81,15 @@ public class DriverTest {
      */
     @Test
     public void moveToTestString() {
-        String destination = "College";
         Driver driver = new Driver(0);
+        String destination = "College";
 
-        int expResult = -1;
-        int result = driver.moveTo(destination);
-
-        assertEquals(expResult, result);
+        assertEquals(driver.moveTo(destination), -1);
 
         destination = "Diner";
-        expResult = 0;
-        result = driver.moveTo(destination);
 
-        assertEquals(expResult, result);
-        assertEquals(driver.getLocation(),destination);
+        assertEquals(driver.moveTo(destination), 0);
+        assertEquals(driver.getLocation(), destination);
     }
 
     /**
@@ -107,9 +103,6 @@ public class DriverTest {
 
         when(driver2.moveTo(destination)).thenReturn(-1);
 
-        int result = driver1.moveTo(destination);
-        int expResult = driver2.moveTo(destination);
-
-        assertEquals(expResult, result);
+        assertEquals(driver1.moveTo(destination), driver2.moveTo(destination));
     }
 }

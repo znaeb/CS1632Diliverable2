@@ -58,12 +58,9 @@ public class LocationTest {
      */
     @Test
     public void getNameTest() {
-        Location instance = new Location("Hotel", 0, 3, -1, -1);
+        Location location = new Location("Hotel", 0, 3, -1, -1);
 
-        String expResult = "Hotel";
-        String result = instance.getName();
-
-        assertEquals(expResult, result);
+        assertEquals(location.getName(), "Hotel");
     }
 
     /**

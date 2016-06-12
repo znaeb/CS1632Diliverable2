@@ -55,7 +55,7 @@ public class CityTest {
     }
 
     /**
-     * Tests getLocation using an out of bounds index of the location
+     * Tests getLocation throws an exception when using an out of bounds index of the location
      */
     @Test(expected=IndexOutOfBoundsException.class)
     public void getLocationTestIntOOB() {
@@ -70,14 +70,12 @@ public class CityTest {
      */
     @Test
     public void getLocationTestString() {
-        String location = "Hotel";
         City city = new City();
-        Location expResult = Mockito.mock(Location.class);
-
-        when(expResult.getName()).thenReturn("Hotel");
-
+        String location = "Hotel";
         int[] arrayEx = { 1, -1, 2, -1 };
 
+        Location expResult = Mockito.mock(Location.class);
+        when(expResult.getName()).thenReturn("Hotel");
         when(expResult.getDestinations()).thenReturn(arrayEx);
 
         Location result = city.getLocation(location);
@@ -91,8 +89,8 @@ public class CityTest {
      */
     @Test
     public void getLocationTestStringInvalid() {
-        String location = "Does Not Exist";
         City city = new City();
+        String location = "DOES NOT EXIST";
         Location result = city.getLocation(location);
 
         assertNull(result);
