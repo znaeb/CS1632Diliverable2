@@ -34,7 +34,7 @@ public class LocationTest {
     }
 
     /**
-     * Test of getCity method for the default city, of class Location.
+     * Tests getCity returns a city that is equal to the default city when initialized the same way
      */
     @Test
     public void getCityTest() {
@@ -54,7 +54,7 @@ public class LocationTest {
     }
 
     /**
-     * Test of getName method, of class Location.
+     * Tests getName using one of the predefined location names
      */
     @Test
     public void getNameTest() {
@@ -67,7 +67,7 @@ public class LocationTest {
     }
 
     /**
-     * Test of getDestinations method, of class Location.
+     * Tests getDestinations returns the correct array of destinations
      */
     @Test
     public void getDestinationsTest() {
@@ -80,7 +80,7 @@ public class LocationTest {
     }
 
     /**
-     * Test of getDestinations method, of class Location, using a filled city
+     * Test getDestinations using a filled city
      */
     @Test
     public void getDestinationsTestGetCity() {

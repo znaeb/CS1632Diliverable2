@@ -34,7 +34,7 @@ public class CityTest {
     }
 
     /**
-     * Test of getLocation method, of class City.
+     * Test of getLocation method using a valid integer index of the location
      */
     @Test
     public void getLocationTestInt() {
@@ -55,7 +55,18 @@ public class CityTest {
     }
 
     /**
-     * Test of getLocation method, of class City.
+     * Tests getLocation using an out of bounds index of the location
+     */
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void getLocationTestIntOOB() {
+        int index = -1;
+        City instance = new City();
+
+        Location result = instance.getLocation(index);
+    }
+
+    /**
+     * Tests getLocation using a valid string name of the location
      */
     @Test
     public void getLocationTestString() {
@@ -73,5 +84,17 @@ public class CityTest {
 
         assertEquals(expResult.getName(), result.getName());
         assertArrayEquals(expResult.getDestinations(), result.getDestinations());
+    }
+
+    /**
+     * Tests getLocation using an invalid string name of an unknown location
+     */
+    @Test
+    public void getLocationTestStringInvalid() {
+        String location = "Does Not Exist";
+        City city = new City();
+        Location result = city.getLocation(location);
+
+        assertNull(result);
     }
 }

@@ -34,7 +34,7 @@ public class DriverTest {
     }
 
     /**
-     * Test of getLocation method, of class Driver.
+     * Tests getLocation returns the correct String using a specified starting index
      */
     @Test
     public void getLocationTest() {
@@ -47,7 +47,7 @@ public class DriverTest {
     }
 
     /**
-     * Test of getIndex method, of class Driver.
+     * Tests getLocationIndex returns the expected index
      */
     @Test
     public void getLocationIndexTest() {
@@ -60,7 +60,7 @@ public class DriverTest {
     }
 
     /**
-     * Test of moveTo method, of class Driver.
+     * Tests moveTo moves the driver to the specified int index
      */
     @Test
     public void moveToTestInt() {
@@ -76,7 +76,7 @@ public class DriverTest {
     }
 
     /**
-     * Test of moveTo method, of class Driver.
+     * Tests moveTo moves the driver to the specified location name
      */
     @Test
     public void moveToTestString() {
@@ -94,5 +94,22 @@ public class DriverTest {
 
         assertEquals(expResult, result);
         assertEquals(driver.getLocation(),destination);
+    }
+
+    /**
+     * Tests moveTo returns -1 when an invalid destination is tried
+     */
+    @Test
+    public void moveToTestStringMocked() {
+        String destination = "DOES NOT EXIST";
+        Driver driver1 = new Driver(0);
+        Driver driver2 = mock(Driver.class);
+
+        when(driver2.moveTo(destination)).thenReturn(-1);
+
+        int result = driver1.moveTo(destination);
+        int expResult = driver2.moveTo(destination);
+
+        assertEquals(expResult, result);
     }
 }
