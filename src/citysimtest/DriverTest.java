@@ -1,3 +1,9 @@
+/**
+ * DriverTest.java
+ * @author Benjamin Nimchinsky
+ * @author Michael Faller
+ */
+
 import org.junit.*;
 import org.mockito.*;
 import static org.junit.Assert.*;

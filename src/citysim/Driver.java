@@ -1,4 +1,10 @@
 /**
+ * Driver.java
+ * @author Benjamin Nimchinsky
+ * @author Michael Faller
+ */
+
+/**
  * A driver
  */
 public class Driver {

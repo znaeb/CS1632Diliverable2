@@ -1,4 +1,10 @@
 /**
+ * City.java
+ * @author Benjamin Nimchinsky
+ * @author Michael Faller
+ */
+
+/**
  * A City
  */
 public class City {

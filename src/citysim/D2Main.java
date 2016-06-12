@@ -1,3 +1,9 @@
+/**
+ * D2Main.java
+ * @author Benjamin Nimchinsky
+ * @author Michael Faller
+ */
+
 import java.util.Random;
 
 /**
@@ -22,7 +28,7 @@ public class D2Main {
     }
 
     /**
-     * Run the city simulation
+     * Run the city simulation for 5 drivers
      * @param seed for the random generator
      */
     private static void run(int seed) {
@@ -32,12 +38,11 @@ public class D2Main {
         int street;
         int[] destinations;
 
-        for (int d = 0; d < 5; d++) {
-            Driver driver = new Driver(rand.nextInt(Location.NUM_LOCATIONS));
+        for (int d = 0; d < 5; d++) { // iterate through 5 drivers
+            Driver driver = new Driver(rand.nextInt(Location.NUM_LOCATIONS)); // choose random starting location
 
-            // choose to go to College (via Fifth Ave) or Hotel (via Fourth Ave)
             location = driver.getLocation();
-            if (location.equals("Outside City")) {
+            if (location.equals("Outside City")) { // choose to go to College (via Fifth Ave) or Hotel (via Fourth Ave)
                 if (rand.nextBoolean()) {
                     street = driver.moveTo("College");
                 } else {
@@ -50,23 +55,22 @@ public class D2Main {
                 int randDestination;
 
                 location = driver.getLocation();
-                destinations = city.getLocation(driver.getLocationIndex()).getDestinations();
+                destinations = city.getLocation(driver.getLocationIndex()).getDestinations(); // possible destinations
 
-                do { // find a valid random destination that is connected to the current location
+                do { // choose a valid random destination connected to the current location and go there
                     randDestination = rand.nextInt(Location.NUM_STREETS);
                 } while (destinations[randDestination] == -1);
-
                 street = driver.moveTo(destinations[randDestination]);
 
                 print(d, location, driver.getLocation(), getStreet(street));
             } while (!driver.getLocation().equals("Outside City"));
 
-            System.out.println("-----");
+            System.out.println("-----"); // end of this drivers turn
         }
     }
 
     /**
-     * Print driver's move
+     * Print driver's movement
      * @param d driver number
      * @param location1 initial location
      * @param location2 destination location

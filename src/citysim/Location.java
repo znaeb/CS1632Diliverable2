@@ -1,4 +1,10 @@
 /**
+ * Location.java
+ * @author Benjamin Nimchinsky
+ * @author Michael Faller
+ */
+
+/**
  * A location
  */
 public class Location {
