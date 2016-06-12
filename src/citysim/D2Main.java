@@ -28,24 +28,91 @@ public class D2Main {
     private static void run(int seed) {
         Random rand = new Random(seed);
         City city = new City();
-        Driver[] driver = new Driver[5];
+        String location;
+        int street;
+        int[] destinations;
 
-        for (int d = 0; d < driver.length; d++) {
-            driver[d] = new Driver(rand.nextInt(Location.NUM_LOCATIONS));
+        for (int d = 0; d < 5; d++) {
+            Driver driver = new Driver(rand.nextInt(Location.NUM_LOCATIONS));
+
+            // choose to go to College (via Fifth Ave) or Hotel (via Fourth Ave)
+            location = driver.getLocation();
+            if (location.equals("Outside City")) {
+                if (rand.nextBoolean()) {
+                    street = driver.moveTo("College");
+                } else {
+                    street = driver.moveTo("Hotel");
+                }
+                print(d, location, driver.getLocation(), getStreet(street));
+            }
+
+            do { // driver randomly goes to a new location until outside city
+                int randDestination;
+
+                location = driver.getLocation();
+                destinations = city.getLocation(driver.getLocationIndex()).getDestinations();
+
+                do { // find a valid random destination that is connected to the current location
+                    randDestination = rand.nextInt(Location.NUM_STREETS);
+                } while (destinations[randDestination] == -1);
+
+                street = driver.moveTo(destinations[randDestination]);
+
+                print(d, location, driver.getLocation(), getStreet(street));
+            } while (!driver.getLocation().equals("Outside City"));
+
+            System.out.println("-----");
         }
-        // TODO
     }
 
     /**
-     * Used for printing data
+     * Print driver's move
+     * @param d driver number
+     * @param location1 initial location
+     * @param location2 destination location
+     * @param street used to travel
      */
-    private static String getStreetNameFromIndex(int index){
-        // TODO
-        if (index==0) return "Fourth Ave.";
-        if (index==0) return "Fifth Ave.";
-        if (index==0) return "Bill St.";
-        if (index==0) return "Phil St.";
-        else return "NAN";
+    private static void print(int d, String location1, String location2, String street) {
+        System.out.println("Driver " + d + " heading from " + location1 + " to " + location2 + " via " + street);
+
+        if (location2.equals("Outside City")) {
+            String city;
+
+            if (street.equals("Fourth Ave.")) {
+                city = "Philadelphia";
+            } else {
+                city = "Cleveland";
+            }
+
+            System.out.println("Driver has gone to " + city + "!");
+        }
+    }
+
+    /**
+     * Translates street index to street name
+     * @param index return value from Driver.moveTo()
+     */
+    private static String getStreet(int index) {
+        String result;
+
+        switch (index) {
+            case 0:
+                result = "Fourth Ave.";
+                break;
+            case 1:
+                result = "Fifth Ave.";
+                break;
+            case 2:
+                result = "Bill St.";
+                break;
+            case 3:
+                result = "Phil St.";
+                break;
+            default:
+                result = "NAN";
+        }
+
+        return result;
     }
 
     /**

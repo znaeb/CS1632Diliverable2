@@ -18,15 +18,15 @@ public class Driver {
      * Useful for printing the output
      * @return a string with the driver's current locations
      */
-    public String getCurrentLocation() {
+    public String getLocation() {
         return city.getLocation(currentIndex).getName();
     }
     
     /**
      * Useful for getting data
-     * @return int with the driver's current locations
+     * @return int with the driver's current location
      */
-    public int getCurrentIndex() {
+    public int getLocationIndex() {
         return currentIndex;
     }
     

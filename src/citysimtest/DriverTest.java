@@ -1,6 +1,5 @@
 import org.junit.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 /**
  * Tests a Driver object
@@ -27,27 +26,27 @@ public class DriverTest {
     }
 
     /**
-     * Test of getCurrentLocation method, of class Driver.
+     * Test of getLocation method, of class Driver.
      */
     @Test
-    public void getCurrentLocationTest() {
+    public void getLocationTest() {
         Driver driver = new Driver(0);
 
         String expResult = "Hotel";
-        String result = driver.getCurrentLocation();
+        String result = driver.getLocation();
 
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of getCurrentIndex method, of class Driver.
+     * Test of getIndex method, of class Driver.
      */
     @Test
-    public void getCurrentIndexTest() {
+    public void getLocationIndexTest() {
         Driver driver = new Driver(0);
 
         int expResult = 0;
-        int result = driver.getCurrentIndex();
+        int result = driver.getLocationIndex();
 
         assertEquals(expResult, result);
     }
@@ -64,7 +63,7 @@ public class DriverTest {
         int result = driver.moveTo(index);
 
         assertEquals(expResult, result);
-        assertEquals(driver.getCurrentIndex(),2);
+        assertEquals(driver.getLocationIndex(),2);
 
     }
 
@@ -86,6 +85,6 @@ public class DriverTest {
         result = driver.moveTo(destination);
 
         assertEquals(expResult, result);
-        assertEquals(driver.getCurrentLocation(),destination);
+        assertEquals(driver.getLocation(),destination);
     }
 }
