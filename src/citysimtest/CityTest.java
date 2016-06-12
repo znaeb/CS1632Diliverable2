@@ -1,4 +1,5 @@
 import org.junit.*;
+import org.mockito.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -33,7 +34,7 @@ public class CityTest {
     public void getLocationTestInt() {
         int index = 0;
         City instance = new City();
-        Location expResult = mock(Location.class);
+        Location expResult = Mockito.mock(Location.class);
 
         when(expResult.getName()).thenReturn("Hotel");
 
@@ -54,7 +55,7 @@ public class CityTest {
     public void getLocationTestString() {
         String location = "Hotel";
         City city = new City();
-        Location expResult = mock(Location.class);
+        Location expResult = Mockito.mock(Location.class);
 
         when(expResult.getName()).thenReturn("Hotel");
 

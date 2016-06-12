@@ -1,6 +1,8 @@
 import org.junit.*;
+import org.mockito.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
 
 /**
  * Tests the Location object
