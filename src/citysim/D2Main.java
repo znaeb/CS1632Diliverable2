@@ -1,35 +1,41 @@
 import java.util.Random;
 
 /**
+ * Deliverable 2
  *
- * @author Benjamin
+ * Usage:
+ * java D2Main <seed>
  */
 public class D2Main {
-    static int seed;
-    static int locationCount = Location.getMaxLocations();
+    private static int seed;
 
     /**
-     *
-     * @param args
+     * Main
+     * @param args seed
      */
     public static void main(String[] args) {
-        seed = Integer.parseInt(args[0]);
-        City city;
+        try {
+            seed = Integer.parseInt(args[0]);
+        } catch (Exception e) {
+            System.out.println("Usage:\njava D2Main <seed>");
+            System.exit(1);
+        }
+
+        City city = new City();
     }
 
     /**
-     * makes a Random Driver
-     * @return
+     * Makes a random Driver
+     * @return driver
      */
     public static Driver getDriver() {
-        Random rand = new Random();
-        rand.setSeed(seed);
+        Random rand = new Random(seed);
 
-        return new Driver(rand.nextInt(locationCount));
+        return new Driver(rand.nextInt(Location.MAX_LOCATIONS));
     }
 
     /**
-     * used for printing data
+     * Used for printing data
      */
     public static String getStreetNameFromIndex(int index){
         if (index==0) return "Fourth Ave.";

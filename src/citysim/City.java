@@ -1,29 +1,29 @@
 /**
- *
+ * A City
  */
 public class City {
     private Location[] city = Location.getCity();
 
     /**
-     *
+     * Default constructor
      */
     public City() {
         city = Location.getCity();
     }
 
     /**
-     * gets the Location at an index
-     * @param index
-     * @return
+     * Gets the Location at an index
+     * @param index of location
+     * @return location
      */
     public Location getLocation(int index) {
         return city[index];
     }
 
     /**
-     * gets the Location from a string
-     * @param location
-     * @return
+     * Gets the Location from a string
+     * @param location string
+     * @return location
      */
     public Location getLocation(String location) {
         for (int i = 0; i < city.length; i++) {

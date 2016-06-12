@@ -3,8 +3,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- *
- * @author Benjamin
+ * Tests the City object
  */
 public class CityTest {
     

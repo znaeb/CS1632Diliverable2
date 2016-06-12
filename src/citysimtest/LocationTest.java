@@ -3,8 +3,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- *
- * @author Benjamin
+ * Tests the Location object
  */
 public class LocationTest {
     
@@ -28,19 +27,6 @@ public class LocationTest {
     }
 
     /**
-     * Test of getMaxLocations method, of class Location.
-     */
-    @Test
-    public void getMaxLocationsTest() {
-        int expResult = 5;
-        int result = Location.getMaxLocations();
-
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getCity method for the default city, of class Location.
      */
     @Test
@@ -58,8 +44,6 @@ public class LocationTest {
         for (int i = 0; i < 5; i++) {
             assert(expResult[i].equals(result[i]));
         }
-
-        //assertArrayEquals(expResult, result);
     }
 
     /**
@@ -87,6 +71,7 @@ public class LocationTest {
 
         assertArrayEquals(expResult, result);
     }
+
     /**
      * Test of getDestinations method, of class Location, using a filled city
      */

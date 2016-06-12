@@ -1,28 +1,28 @@
 /**
- *
- * @author Benjamin
+ * A location
  */
 public class Location {
     private String name;
     private int[] destinations;
-    private static int maxLocations = 5;
-    private static int streetCount = 4;
+    public static int MAX_LOCATIONS = 5;
+    public static int STREET_COUNT = 4;
 
     /**
-     * destinations[0] where fourth Ave. leads to from current
-     * destinations[1] is for fifth Ave
-     * destinations[2] is for Bill St
-     * destinations[3] is for Phil St
-     * the value is -1 if there is no path
+     * Creates a location.
+     *   destinations[0] where fourth Ave. leads to from current
+     *   destinations[1] is for fifth Ave
+     *   destinations[2] is for Bill St
+     *   destinations[3] is for Phil St
+     *   the value is -1 if there is no path
      * @param n name
-     * @param fourth
-     * @param fifth
-     * @param bill
-     * @param phil
+     * @param fourth destination[0]
+     * @param fifth destination[1]
+     * @param bill destination[2]
+     * @param phil destination[3]
      */
-    public Location(String n, int fourth, int fifth, int bill, int phil){
+    public Location(String n, int fourth, int fifth, int bill, int phil) {
         name = n;
-        destinations = new int[streetCount];
+        destinations = new int[STREET_COUNT];
         destinations[0] = fourth;
         destinations[1] = fifth;
         destinations[2] = bill;
@@ -30,11 +30,11 @@ public class Location {
     }
 
     /**
-     *
+     * Gets the city
      * @return
      */
     public static Location[] getCity() {
-        Location[] city = new Location[getMaxLocations()];
+        Location[] city = new Location[MAX_LOCATIONS];
 
         city[0] = new Location("Hotel", 1, -1, 2, -1);
         city[1] = new Location("Diner", 4, -1, -1, 3);
@@ -46,33 +46,25 @@ public class Location {
     }
 
     /**
-     *
-     * @return the name
+     * Gets the name of the location
+     * @return name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
-     * @return the destinations
+     * Get the destinations from a location
+     * @return destinations
      */
     public int[] getDestinations() {
         return destinations;
     }
-    
-    /**
-     *
-     * @return the maxLocations
-     */
-    public static int getMaxLocations() {
-        return maxLocations;
-    }
 
     /**
-     *
-     * @param l location
-     * @return true if locations are equal
+     * Determine if two locations are equal
+     * @param l location to compare
+     * @return true if this and l are equal
      */
     public Boolean equals(Location l) {
         Boolean equal;

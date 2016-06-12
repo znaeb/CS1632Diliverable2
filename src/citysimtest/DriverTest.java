@@ -3,8 +3,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- *
- * @author Benjamin
+ * Tests a Driver object
  */
 public class DriverTest {
     
@@ -32,8 +31,6 @@ public class DriverTest {
      */
     @Test
     public void getCurrentLocationTest() {
-        System.out.println("getCurrentLocation");
-        
         Driver driver = new Driver(0);
 
         String expResult = "Hotel";
@@ -47,8 +44,6 @@ public class DriverTest {
      */
     @Test
     public void getCurrentIndexTest() {
-        System.out.println("getCurrentIndex");
-
         Driver driver = new Driver(0);
 
         int expResult = 0;
@@ -62,8 +57,6 @@ public class DriverTest {
      */
     @Test
     public void moveToTestInt() {
-        System.out.println("moveTo");
-
         int index = 2;
         Driver driver = new Driver(0);
 
@@ -80,8 +73,6 @@ public class DriverTest {
      */
     @Test
     public void moveToTestString() {
-        System.out.println("moveTo");
-
         String destination = "College";
         Driver driver = new Driver(0);
 
@@ -97,5 +88,4 @@ public class DriverTest {
         assertEquals(expResult, result);
         assertEquals(driver.getCurrentLocation(),destination);
     }
-    
 }

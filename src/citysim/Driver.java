@@ -1,5 +1,5 @@
 /**
- *
+ * A driver
  */
 public class Driver {
     private int currentIndex;
@@ -7,31 +7,31 @@ public class Driver {
 
     /**
      * Default constructor
-     * @param startIndex
+     * @param index
      */
-    public Driver(int startIndex) {
-        currentIndex = startIndex;
+    public Driver(int index) {
+        currentIndex = index;
         city = new City();
     }
     
     /**
-     * useful for printing the output
-     * @return a string with the drivers currnet location's
+     * Useful for printing the output
+     * @return a string with the driver's current locations
      */
     public String getCurrentLocation() {
         return city.getLocation(currentIndex).getName();
     }
     
     /**
-     * useful for getting data
-     * @return int with the drivers currnet location's
+     * Useful for getting data
+     * @return int with the driver's current locations
      */
     public int getCurrentIndex() {
         return currentIndex;
     }
     
     /**
-     * moves to a city with specified index
+     * Moves to a city with specified index
      * @param index an int
      * @return index of street used, -1 if no move is made
      */
@@ -51,10 +51,10 @@ public class Driver {
     /**
      * Moves to a city with a specified destination
      * @param destination a String
-     * @return index of streed used, -1 if no move is made
+     * @return index of street used, -1 if no move is made
      */
     public int moveTo(String destination) {
-        for (int i = 0; i < Location.getMaxLocations(); i++) {
+        for (int i = 0; i < Location.MAX_LOCATIONS; i++) {
             if (destination.equalsIgnoreCase(city.getLocation(i).getName())) {
                 return moveTo(i);
             }
